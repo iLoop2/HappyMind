@@ -21,6 +21,7 @@ var config = {
 var routes = require('./routes/index');
 var users = require('./routes/users');
 var report = require('./routes/report');
+var register = require('./routes/register');
 
 var app = express();
 
@@ -48,7 +49,9 @@ app.use(express.static(path.join(__dirname, 'public')));
 // what to do when user first visits application
     
 app.use('/', routes);
-app.get('/report',ensureAuthenticated2, report.getReport);
+app.get('/report', report.getReport);
+app.get('/reportData', report.getData);
+app.post('/register', register.register);
 
 // what to do when visits login URL
 
