@@ -9,7 +9,7 @@ exports.getReport = function(req, res ) {
             'Content-Type' : 'x-application/json'
         });
         console.log('json:', result);
-        res.end(result);
+        res.render('report', { title: 'Happy Minds', data: result });
     };
 
     getFromDb(callback);
@@ -43,7 +43,7 @@ function getFromDb(callback) {
          * Correction 2: Nest the callback correctly!
          ***************/
         client.end();
-        console.log('JSON-result:', json);
+        //console.log('JSON-result:', json);
         callback(null, json);
     });
 };
