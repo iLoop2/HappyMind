@@ -71,6 +71,18 @@ if(err) {
     });
 });
 
+app.get('/test', function(req, res) {
+    var pg = require('pg');
+    var connectionString = "postgres://jrdluvijcaopxs:CRCFxUZD8A772JWnlL5ffXfGW_@ec2-23-23-80-55.compute-1.amazonaws.com:5432/dd0sqqb05mp2jv?ssl=true";
+    pg.connect(connectionString, function (err, client, done) {
+        client.query('SELECT * FROM votes', function (err, result) {
+            done();
+            if (err) return console.error(err);
+        });
+    });
+});
+
+
  // what to do when account is called
  app.get('/account', ensureAuthenticated, function(req, res){
   res.render('account', { user:req.user });
