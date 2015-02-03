@@ -20,6 +20,7 @@ var config = {
 
 var routes = require('./routes/index');
 var users = require('./routes/users');
+var report = require('./routes/report');
 
 var app = express();
 
@@ -47,6 +48,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 // what to do when user first visits application
     
 app.use('/', routes);
+app.get('/report',ensureAuthenticated, report.getReport);
 
 // what to do when visits login URL
 
@@ -71,18 +73,6 @@ if(err) {
     });
 });
 
-app.get('/test', function(req, res) {
-    var pg = require('pg');
-    var connectionString = "postgres://jrdluvijcaopxs:CRCFxUZD8A772JWnlL5ffXfGW_@ec2-23-23-80-55.compute-1.amazonaws.com:5432/dd0sqqb05mp2jv?ssl=true";
-    pg.connect(connectionString, function (err, client, done) {
-        client.query('SELECT * FROM votes', function (err, result) {
-            done();
-            if (err) return console.error(err);
-        });
-    });
-});
-
-
  // what to do when account is called
  app.get('/account', ensureAuthenticated, function(req, res){
   res.render('account', { user:req.user });
@@ -93,7 +83,7 @@ app.get('/test', function(req, res) {
 app.post('/login/callback',
 passport.authenticate('wsfed-saml2', { failureRedirect: '/', failureFlash: true }),
 function(req, res) {
-  res.redirect('/account');
+  res.redirect('/report');
 });
 
 function ensureAuthenticated(req, res, next) {
