@@ -47,25 +47,22 @@ app.use(require('stylus').middleware(path.join(__dirname, 'public')));
 app.use(express.static(path.join(__dirname, 'public')));
 
 // what to do when user first visits application
-    
 app.use('/', routes);
-app.get('/report', ensureAuthenticated, report.getReport);
-app.get('/reportData', report.getData);
-app.post('/register', register.register);
 
 // what to do when visits login URL
-
-app.get('/login2',
-    passport.authenticate('wsfed-saml2', { successRedirect: 'https://happymind.herokuapp.com/login/callback2', failureRedirect: '/', failureFlash: true }),
+app.get('/login',
+    passport.authenticate('wsfed-saml2', { successRedirect: '/', failureRedirect: '/', failureFlash: true }),
     function(req, res) {
         res.redirect('/');
-    });
+    }
+);
 
-app.get('/login',
-passport.authenticate('wsfed-saml2', { successRedirect: '/', failureRedirect: '/', failureFlash: true }),
-function(req, res) {
-  res.redirect('/');
-});
+
+app.get('/report', ensureAuthenticated, report.getReport);
+app.get('/reportData',ensureAuthenticated, report.getData);
+app.post('/register', register.register);
+
+
 
 // what to do when user wishes to logout
 app.get('/logout', function(req, res){
@@ -92,24 +89,14 @@ if(err) {
 app.post('/login/callback',
 passport.authenticate('wsfed-saml2', { failureRedirect: '/', failureFlash: true }),
 function(req, res) {
-  res.redirect('/account');
+  res.redirect('/report');
 });
 
-app.post('/login/callback2',
-    passport.authenticate('wsfed-saml2', { failureRedirect: '/', failureFlash: true }),
-    function(req, res) {
-        res.redirect('/report');
-    });
 
 function ensureAuthenticated(req, res, next) {
   if (req.isAuthenticated()) { return next(); }
     res.redirect('/login')
   }
-
-function ensureAuthenticated2(req, res, next) {
-    if (req.isAuthenticated()) { return next(); }
-    res.redirect('/login2')
-}
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

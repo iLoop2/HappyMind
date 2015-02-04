@@ -2,7 +2,7 @@ extends layout
 
 block content
     p You are authenticated as #{user.displayName} #{user.familyName} with email: #{user.email}
-    #piechart1
+    div#piechart1.container
     script.
         var w = 900,                        //width
         h = 900,                            //height
@@ -18,7 +18,7 @@ block content
         data = JSON.parse(data1);
 
 
-        var vis = d3.select("body")
+        var vis = d3.select("piechart1")
         .append("svg:svg")              //create the SVG element inside the <body>
         .data([data])                   //associate our data with the document
         .attr("width", w)           //set the width and height of our visualization (these will be attributes of the <svg> tag
