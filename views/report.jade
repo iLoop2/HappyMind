@@ -18,7 +18,7 @@ block content
         data = JSON.parse(data1);
 
 
-        var vis = d3.select("piechart1")
+        var vis = d3.select("#piechart1")
         .append("svg:svg")              //create the SVG element inside the <body>
         .data([data])                   //associate our data with the document
         .attr("width", w)           //set the width and height of our visualization (these will be attributes of the <svg> tag
