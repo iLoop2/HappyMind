@@ -51,5 +51,4 @@ block content
         .attr("text-anchor", "middle")                          //center the text on it's origin
         .text(function(d, i) { return data[i].label; });        //get the label from our original data array
 
-    p Name #{user.displayName} #{user.familyName}
-    p Email #{user.email}
+    p You are authenticated as #{user.displayName} #{user.familyName} with email: #{user.email}
