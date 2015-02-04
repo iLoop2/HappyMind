@@ -51,7 +51,7 @@ app.use('/', routes);
 
 // what to do when visits login URL
 app.get('/login',
-    passport.authenticate('wsfed-saml2', { successRedirect: '/', failureRedirect: '/', failureFlash: true }),
+    passport.authenticate('wsfed-saml2', {  failureRedirect: '/', failureFlash: true }),
     function(req, res) {
         res.redirect('/');
     }
