@@ -1,7 +1,7 @@
 extends layout
 
 block content
-    #piechart_3d
+    #piechart1
     script.
         var w = 900,                        //width
         h = 900,                            //height
@@ -16,9 +16,6 @@ block content
 
         data = JSON.parse(data1);
 
-        data2 = [{"label":"one", "value":10},
-        {"label":"two", "value":50},
-        {"label":"three", "value":30}];
 
         var vis = d3.select("body")
         .append("svg:svg")              //create the SVG element inside the <body>
