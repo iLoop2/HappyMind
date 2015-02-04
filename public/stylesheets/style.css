@@ -11,3 +11,14 @@ a {
 h1 {
   color: #fff;
 }
+.bbody {
+  background-color: #000;
+  color: #008000;
+  width: 100%;
+  alignment: center;
+}
+.mycontainer {
+  alignment: center;
+  color: #fff;
+  text-align: center;
+}
