@@ -49,7 +49,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 // what to do when user first visits application
     
 app.use('/', routes);
-app.get('/report', report.getReport);
+app.get('/report', ensureAuthenticated, report.getReport);
 app.get('/reportData', report.getData);
 app.post('/register', register.register);
 

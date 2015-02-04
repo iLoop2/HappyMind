@@ -3,7 +3,7 @@ var report = express.Router();
 
 
 exports.getReport = function(req, res){
-    res.render('report', { title: 'Happy Minds' });
+    res.render('report', { title: 'Happy Minds', user:req.user  });
 }
 
 exports.getData = function(req, res ) {
