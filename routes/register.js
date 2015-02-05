@@ -21,7 +21,8 @@ exports.register = function(req, res ) {
         function(err, result) {
 
             if(err) return response.send(err);
-            res.send('OK');
+
         });
     client.end();
+    res.send('OK');
 };
