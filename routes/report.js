@@ -16,10 +16,7 @@ exports.getData = function(req, res ) {
         console.log('json:', result);
         res.end(result);
     };
-
     getFromDb(callback);
-
-
 };
 
 function getFromDb(callback) {
