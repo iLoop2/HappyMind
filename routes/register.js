@@ -20,9 +20,11 @@ exports.register = function(req, res ) {
         [team, value],
         function(err, result) {
 
-            if(err) return response.send(err);
+            if(err) return res.send(err);
+
+            client.end();
 
         });
-    client.end();
+
     res.send('OK');
 };
