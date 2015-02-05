@@ -13,8 +13,11 @@ exports.register = function(req, res ) {
         ssl: true
     });
     client.connect();
+    var team = req.body.teamid;
+    var value = req.body.value;
+
     client.query('INSERT INTO votes (teamid, value, timestamp) VALUES ($1, $2, current_timestamp)',
-        [req.query.teamid, req.query.value],
+        [team, value],
         function(err, result) {
 
             if(err) return response.send(err);
