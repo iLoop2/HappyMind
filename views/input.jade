@@ -1,0 +1,27 @@
+extends layout
+head
+    title= title
+body
+
+block content
+    script.
+        function registerVote(id){
+            $.post("https://happymind.herokuapp.com/register", {teamid: '1', value: id}, function(result){
+                $("span").html(result);
+            });
+
+        }
+
+    div.row
+        div.col-md-3
+            img.img-rounded.logo(src="images/Deleket-Smileys-9.png", onclick="registerVote(1)")
+        div.col-md-3
+            img.img-rounded.logo(src="images/Deleket-Smileys-10.png", onclick="registerVote(2)")
+        div.col-md-3
+            img.img-rounded.logo(src="images/Deleket-Smileys-27.png", onclick="registerVote(3)")
+        div.col-md-3
+            img.img-rounded.logo(src="images/Deleket-Smileys-32.png", onclick="registerVote(4)")
+
+    p Please login to read the results:
+      a(href="/login") login
+

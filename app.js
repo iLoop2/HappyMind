@@ -22,6 +22,7 @@ var routes = require('./routes/index');
 var users = require('./routes/users');
 var report = require('./routes/report');
 var register = require('./routes/register');
+var input = require('./routes/input');
 
 var app = express();
 
@@ -61,6 +62,7 @@ app.get('/login',
 app.get('/report', ensureAuthenticated, report.getReport);
 app.get('/reportData',ensureAuthenticated, report.getData);
 app.post('/register', register.register);
+app.get('/input',input.input);
 
 
 
