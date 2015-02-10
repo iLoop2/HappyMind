@@ -4,7 +4,7 @@ block content
 
     div#piechart1.container
     script.
-        var host = "ws://localhost:5000"//location.origin.replace(/^http/, 'ws')
+        var host = location.origin.replace(/^http/, 'ws')
         var ws = new WebSocket(host);
         ws.onmessage = function (event) {
 

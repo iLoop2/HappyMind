@@ -51,31 +51,6 @@ app.use(require('stylus').middleware(path.join(__dirname, 'public')));
 app.use(express.static(path.join(__dirname, 'public')));
 
 
-
-var WebSocketServer = require("ws").Server
-var http1 = require("http")
-var express1 = require("express")
-var app1 = express1()
-var port1 = process.env.PORT || 5000
-
-app1.use(express1.static(__dirname + "/"))
-
-var server1 = http1.createServer(app1)
-server1.listen(port1)
-
-console.log("http server listening on %d", port1)
-
-var wss = new WebSocketServer({server: server1})
-console.log("websocket server created")
-
-wss.broadcast = function broadcast(data) {
-    wss.clients.forEach(function each(client) {
-        client.send(data);
-    });
-};
-
-app.set('ws',wss);
-
 // what to do when user first visits application
 app.use('/', routes);
 
