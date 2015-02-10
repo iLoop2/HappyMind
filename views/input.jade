@@ -6,7 +6,7 @@ body
 block content
     script.
         function registerVote(id){
-            $.post("https://happymind.herokuapp.com/register", {teamid: '1', value: id}, function(result){
+            $.post("http://localhost:3000/register", {teamid: '1', value: id}, function(result){
                 $("span").html(result);
             });
 

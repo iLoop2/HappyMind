@@ -18,13 +18,16 @@ var config = {
   logoutUrl: 'https://waaazaap.azurewebsites.net'
 };
 
+var app = express();
+
 var routes = require('./routes/index');
 var users = require('./routes/users');
 var report = require('./routes/report');
 var register = require('./routes/register');
 var input = require('./routes/input');
+var wsreport = require('./routes/wsreport');
 
-var app = express();
+
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
@@ -47,6 +50,32 @@ app.use(passport.session());
 app.use(require('stylus').middleware(path.join(__dirname, 'public')));
 app.use(express.static(path.join(__dirname, 'public')));
 
+
+
+var WebSocketServer = require("ws").Server
+var http1 = require("http")
+var express1 = require("express")
+var app1 = express1()
+var port1 = process.env.PORT || 5000
+
+app1.use(express1.static(__dirname + "/"))
+
+var server1 = http1.createServer(app1)
+server1.listen(port1)
+
+console.log("http server listening on %d", port1)
+
+var wss = new WebSocketServer({server: server1})
+console.log("websocket server created")
+
+wss.broadcast = function broadcast(data) {
+    wss.clients.forEach(function each(client) {
+        client.send(data);
+    });
+};
+
+app.set('ws',wss);
+
 // what to do when user first visits application
 app.use('/', routes);
 
@@ -63,7 +92,7 @@ app.get('/report', ensureAuthenticated, report.getReport);
 app.get('/reportData',ensureAuthenticated, report.getData);
 app.post('/register', register.register);
 app.get('/input',input.input);
-
+app.get('/wsreport',wsreport.wsreport);
 
 
 // what to do when user wishes to logout

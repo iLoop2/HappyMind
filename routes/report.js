@@ -19,6 +19,16 @@ exports.getData = function(req, res ) {
     getFromDb(callback);
 };
 
+exports.getPlainData = function(req, res){
+    var callbackPlain = function(err, result){
+        console.log('json:', result);
+        var ws = req.app.get('ws');
+        ws.broadcast(result);
+    };
+    getFromDb(callbackPlain);
+
+};
+
 function getFromDb(callback) {
     var pg = require('pg');
     var client = new pg.Client({

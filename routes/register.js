@@ -1,6 +1,7 @@
 var express = require('express');
 var report = express.Router();
-
+var report = require('./report');
+var app = express();
 
 exports.register = function(req, res ) {
     var pg = require('pg');
@@ -21,7 +22,7 @@ exports.register = function(req, res ) {
         function(err, result) {
 
             if(err) return res.send(err);
-
+            report.getPlainData(req,res);
             client.end();
 
         });

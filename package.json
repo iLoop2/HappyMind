@@ -1,7 +1,7 @@
 {
   "name": "happymind",
   "version": "1.0.0",
-  "description": "",
+  "description": "Happy Mind",
   "main": "app.js",
   "dependencies": {
     "adal-node": "^0.1.11",
@@ -31,7 +31,8 @@
     "xml-crypto": "^0.0.23",
     "xml2js": "^0.2.6",
     "xmldom": "^0.1.19",
-    "xtend": "^2.0.3"
+    "xtend": "^2.0.3",
+    "ws": "^0.7.1"
   },
   "devDependencies": {
     "grunt": "^0.4.5",
@@ -46,5 +47,9 @@
   "license": "ISC",
   "engines": {
     "node": "0.10.x"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:iLoop2/HappyMind.git"
   }
 }
