@@ -5,22 +5,32 @@ body
 
 block content
     script.
-        function registerVote(id){
+        function registerVote(id,imgID,img){
             $.post(location.origin+"/register", {teamid: '1', value: id}, function(result){
                 $("span").html(result);
             });
 
+            var container = $(imgID);
+            container.empty();
+            var img = $("<img/>").attr("src", img).attr("onclick","registerVote("+id+",'"+imgID+"','"+img+"')").css("display","none") // <----- see here
+            // add it to the container
+            container.append(img);
+            img.fadeIn(3000);
+
+
+
+
         }
 
     div.row
-        div.col-md-3
-            img.img-rounded.logo(src="images/Deleket-Smileys-9.png", onclick="registerVote(1)")
-        div.col-md-3
-            img.img-rounded.logo(src="images/Deleket-Smileys-10.png", onclick="registerVote(2)")
-        div.col-md-3
-            img.img-rounded.logo(src="images/Deleket-Smileys-27.png", onclick="registerVote(3)")
-        div.col-md-3
-            img.img-rounded.logo(src="images/Deleket-Smileys-32.png", onclick="registerVote(4)")
+        #img1.col-md-3
+            img.img-rounded.logo(src="images/Deleket-Smileys-9.png", onclick="registerVote(1,'#img1','images/Deleket-Smileys-9.png')")
+        #img2.col-md-3
+            img.img-rounded.logo(src="images/Deleket-Smileys-10.png", onclick="registerVote(2,'#img2','images/Deleket-Smileys-10.png')")
+        #img3.col-md-3
+            img.img-rounded.logo(src="images/Deleket-Smileys-27.png", onclick="registerVote(3,'#img3','images/Deleket-Smileys-27.png')")
+        #img4.col-md-3
+            img.img-rounded.logo(src="images/Deleket-Smileys-32.png", onclick="registerVote(4,'#img4','images/Deleket-Smileys-32.png')")
 
     p Please login to read the results:
       a(href="/login") login
