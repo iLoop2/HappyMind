@@ -64,7 +64,7 @@ app.get('/login',
 
 
 app.get('/report', ensureAuthenticated, report.getReport);
-app.get('/reportData',ensureAuthenticated, report.getData);
+app.get('/reportData', report.getData);
 app.post('/register', register.register);
 app.get('/input',input.input);
 app.get('/wsreport',wsreport.wsreport);
