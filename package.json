@@ -28,7 +28,7 @@
     "serve-favicon": "^2.2.0",
     "stylus": "^0.42.3",
     "underscore": "^1.4.4",
-    "xml-crypto": "^0.0.23",
+    "xml-crypto": "^2.0.0",
     "xml2js": "^0.2.6",
     "xmldom": "^0.1.19",
     "xtend": "^2.0.3",
